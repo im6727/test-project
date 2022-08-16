@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="style.css">
 
 </head>
-<body>
-    <h1>테스트 중</h1>
+<body>    
     <div class="exchange-box">
         <div class="dropdown">
             <button class="dropbtn" id="from-button">USD</button>
@@ -20,11 +19,11 @@
             </div>
         </div>
         <div class="input-area">
-            <input type="number" id="from-input" onkeyup="convert()">
+            <input type="number" id="from-input" onkeyup="convert('from')">
             <div>달러</div>
         </div>
     </div>
-    <h1 align="center">=</h1>
+    <h1>=</h1>
     <div class="exchange-box">
         <div class="dropdown">
             <button class="dropbtn" id="to-button">USD</button>
@@ -35,7 +34,7 @@
             </div>
         </div>
         <div class="input-area">
-            <input type="number" id="to-input" onkeyup="">
+            <input type="number" id="to-input" onkeyup="convert('to')">
             <div>달러</div>
         </div>
     </div>

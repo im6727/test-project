@@ -26,7 +26,7 @@ let currencyRatio = {
         VND : 1,
         unit : "동"
     }
-}
+};
 
 let fromCurrency = 'USD';
 let toCurrency = 'USD'
@@ -39,36 +39,36 @@ document.querySelectorAll("#from-currency-list a")
             document.getElementById("from-button").textContent=this.textContent;
             //3. 선택된 currency값을 변수에 저장해준다
             fromCurrency = this.textContent;
-            convert();
-           //reconvert();
+            convert("from");           
 }));
 
 document.querySelectorAll("#to-currency-list a")
         .forEach((menu) => menu.addEventListener("click", function() {
             document.getElementById("to-button").textContent = this.textContent;
             toCurrency = this.textContent;
-            convert();
-            //reconvert();
+            convert("to");            
 }));
 
 //1. 키를 입력하는 순간 
 //2.환전이 되서 
 //3.환전된 값이 보인다
-function convert() {
+function convert(type) {
     //1. 환전
     // 얼마를 환전? 가지고 있는 돈이 뭔지, 바꾸고자 하는 돈이 뭔지
     // 돈 * 환율 = 환전금액
-    let amount = document.getElementById("from-input").value;
-    let convertedAmount = amount * currencyRatio[fromCurrency][toCurrency];
+    let amount = 0;
+    if (type == "from") {
+        amount = document.getElementById("from-input").value;
+        let convertedAmount = amount * currencyRatio[fromCurrency][toCurrency];
 
-    document.getElementById("to-input").value = convertedAmount;    
+        document.getElementById("to-input").value = convertedAmount; 
+    } else {
+        amount = document.getElementById("to-input").value;
+        let convertedAmount = amount * currencyRatio[toCurrency][fromCurrency];
+
+        document.getElementById("from-input").value = convertedAmount; 
+    }    
 }
 
 //1. 드랍다운 리스트 에 값이 바낄때마다
 
-function reconvert() {
-    let amount = document.getElementById("to-input").value;
-    let convertedAmount = amount * currencyRatio[fromCurrency][toCurrency];
-
-    document.getElementById("from-input").value = convertedAmount;
-}
